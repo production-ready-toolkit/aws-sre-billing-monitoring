@@ -1,15 +1,19 @@
 module "dummy" {
-    source = "github.com/production-ready-toolkit/terraform-module-boilerplate"
+    source = "github.com/production-ready-toolkit/aws-sre-billing-monitoring"
 
-    name        = "dummy"
+    project     = "dummy"
+    environment = "prod"
 
-    vpc         = "vpc-ba8b92c1"
+    warn        = {
+      Currency = "USD"
+      Amount   = "10.00"
+    }
 
-    subnets     = [
-        "subnet-1198752f",
-        "subnet-c832eeaf",
-        "subnet-f634adf9"
-    ]
+    danger      = {
+      Currency = "USD"
+      Amount   = "20.00"
+    }
+
 
     tags        = {
         "environment" = "production"

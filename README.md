@@ -1,43 +1,52 @@
-# XXXXXXXXXX Module for SRE's 
+# Billing Alerts Module for SRE's 
 
 # Features by Default
 
-* Encryption at rest
-* Automatic Failover
-* Multi-AZ 
+* Danger Threshold 
+* Warning Threashold
+* SNS Topics to Notifications
 
 # Variables 
 
-| Variable                      | Default       | Required  | Type      |  Additional Info  |
-|-------------------------------|---------------|-----------|-----------|-------------------|
-| `name`                        | NA            | yes       | `string`  |                   |   
-| `vpc`                         | NA            | yes       | `string`  | VPC ID            |
-| `subnets `                    | NA            | yes       | `list`    | Subnet ID's       |
-| `tags`                        | `{}`          | no        | `map(any)`| Tags to resources  |
-
+| Variable              | Default       | Required  | Type      |  Additional Info      |
+|-----------------------|---------------|-----------|-----------|-----------------------|
+| `project`             | NA            | yes       | `string`  |                       |   
+| `environment`         | NA            | yes       | `string`  |                       |
+| `sns_topic_warn `     | `null`        | no        | `string`  | A new will be created |
+| `sns_topic_danger`    | `null`        | no        | `string`  | A new will be created |
+| `warn.Currency`       | `USD`         | no        | `string`  |                       |
+| `warn.Currency`       | `5.00`        | no        | `string`  |                       |
+| `danger.Currency`     | `USD`         | no        | `string`  |                       |
+| `danger.Currency`     | `15.00`       | no        | `string`  |                       |
 
 # Outputs 
 
-| Variable                      | Value                                     |
-|-------------------------------|-------------------------------------------|
-| `parameter_group`             | `aws_elasticache_parameter_group.main`    | 
-| `security_group`              | `security_group`                          | 
+| Variable                  | Value                                 |
+|---------------------------|---------------------------------------|
+| `sns_warn`                | `aws_sns_topic.warn`                  | 
+| `sns_danger`              | `aws_sns_topic.danger`                | 
+| `cloudwatch_warn_alarm`   | `aws_cloudwatch_metric_alarm.warn`    | 
+| `cloudwatch_warn_danger`  | `aws_cloudwatch_metric_alarm.danger`  | 
 
 # Usage 
 
 ```hcl
 module "dummy" {
-    source = "github.com/production-ready-toolkit/terraform-module-boilerplate"
+    source = "github.com/production-ready-toolkit/aws-sre-billing-monitoring"
 
-    name        = "dummy"
+    project     = "dummy"
+    environment = "prod"
 
-    vpc         = "vpc-ba8b92c1"
+    warn        = {
+      Currency = "USD"
+      Amount   = "10.00"
+    }
 
-    subnets     = [
-        "subnet-1198752f",
-        "subnet-c832eeaf",
-        "subnet-f634adf9"
-    ]
+    danger      = {
+      Currency = "USD"
+      Amount   = "20.00"
+    }
+
 
     tags        = {
         "environment" = "production"
