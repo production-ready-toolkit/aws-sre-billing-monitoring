@@ -17,9 +17,9 @@
 | `evaluation_period`   | `21600`       | no        | `string`  |                       |
 | `linked_account`      | `null`        | no        | `string`  |                       |
 | `warn.Currency`       | `USD`         | no        | `string`  |                       |
-| `warn.Currency`       | `5.00`        | no        | `string`  |                       |
+| `warn.Amount`         | `5.00`        | no        | `string`  |                       |
 | `danger.Currency`     | `USD`         | no        | `string`  |                       |
-| `danger.Currency`     | `15.00`       | no        | `string`  |                       |
+| `danger.Amount`       | `15.00`       | no        | `string`  |                       |
 
 # Outputs 
 
