@@ -1,4 +1,4 @@
-module "dummy" {
+module "basic_alert" {
     source = "github.com/production-ready-toolkit/aws-sre-billing-monitoring"
 
     project     = "dummy"
