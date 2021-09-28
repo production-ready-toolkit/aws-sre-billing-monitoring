@@ -4,7 +4,7 @@ resource "aws_cloudwatch_metric_alarm" "warn" {
     evaluation_periods  = "1"
     metric_name         = "EstimatedCharges"
     namespace           = "AWS/Billing"
-    period              = "21600"
+    period              = var.evaluation_period
     statistic           = "Maximum"
 
     alarm_actions       = [
@@ -13,6 +13,7 @@ resource "aws_cloudwatch_metric_alarm" "warn" {
 
     dimensions = {
         Currency        = lookup(var.warn, "Currency")
+        LinkedAccount   = var.linked_account
     }
 
     threshold           = lookup(var.warn, "Amount")
@@ -26,7 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "danger" {
     evaluation_periods  = "1"
     metric_name         = "EstimatedCharges"
     namespace           = "AWS/Billing"
-    period              = "21600"
+    period              = var.evaluation_period
     statistic           = "Maximum"
 
     alarm_actions       = [
@@ -35,6 +36,7 @@ resource "aws_cloudwatch_metric_alarm" "danger" {
 
     dimensions = {
         Currency        = lookup(var.danger, "Currency")
+        LinkedAccount   = var.linked_account
     }
 
     threshold           = lookup(var.danger, "Amount")

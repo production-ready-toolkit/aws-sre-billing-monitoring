@@ -16,6 +16,16 @@ variable "sns_topic_danger" {
   default   = null 
 }
 
+variable "linked_account" {
+  type      = string
+  default   = null
+}
+
+variable "evaluation_period" {
+  type      = string
+  default   = "21600"
+}
+
 variable "warn" {
   type = map
   default = {

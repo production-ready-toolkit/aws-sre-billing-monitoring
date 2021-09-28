@@ -14,6 +14,8 @@
 | `environment`         | NA            | yes       | `string`  |                       |
 | `sns_topic_warn `     | `null`        | no        | `string`  | A new will be created |
 | `sns_topic_danger`    | `null`        | no        | `string`  | A new will be created |
+| `evaluation_period`   | `21600`       | no        | `string`  |                       |
+| `linked_account`      | `null`        | no        | `string`  |                       |
 | `warn.Currency`       | `USD`         | no        | `string`  |                       |
 | `warn.Currency`       | `5.00`        | no        | `string`  |                       |
 | `danger.Currency`     | `USD`         | no        | `string`  |                       |
@@ -31,7 +33,7 @@
 # Usage 
 
 ```hcl
-module "dummy" {
+module "basic_alert" {
     source = "github.com/production-ready-toolkit/aws-sre-billing-monitoring"
 
     project     = "dummy"
