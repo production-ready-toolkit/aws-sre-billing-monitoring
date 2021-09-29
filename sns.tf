@@ -11,3 +11,10 @@ resource "aws_sns_topic" "danger" {
 
   tags = var.tags
 }
+
+resource "aws_sns_topic" "anomaly" {
+  count = var.sns_topic_anomaly_detection == null ? 1 : 0
+  name  = format("%s-aws-billing-%s-anomaly-detection", var.project, var.environment)
+
+  tags = var.tags
+}

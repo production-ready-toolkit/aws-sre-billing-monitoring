@@ -16,6 +16,11 @@ variable "sns_topic_danger" {
   default   = null 
 }
 
+variable "sns_topic_anomaly_detection" {
+  type      = string 
+  default   = null   
+}
+
 variable "linked_account" {
   type      = string
   default   = null
